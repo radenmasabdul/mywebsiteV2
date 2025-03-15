@@ -20,6 +20,10 @@ export default function Menu({ className = "" }: MenuProps) {
     document.documentElement.classList.toggle("dark");
   };
 
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <ul
       className={`fixed top-4 z-50 menu menu-horizontal bg-[#1D1D1F] text-white rounded-4xl ${className}`}
@@ -34,24 +38,24 @@ export default function Menu({ className = "" }: MenuProps) {
         </button>
       </li>
       <li>
-        <a href="#">
+        <button onClick={() => scrollToSection("home")}>
           <Home className="h-5 w-5" />
-        </a>
+        </button>
       </li>
       <li>
-        <a href="#">
+        <button onClick={() => scrollToSection("work")}>
           <Briefcase className="h-5 w-5" />
-        </a>
+        </button>
       </li>
       <li>
-        <a href="#">
+        <button onClick={() => scrollToSection("story")}>
           <BookOpen className="h-5 w-5" />
-        </a>
+        </button>
       </li>
       <li>
-        <a href="#">
+        <button onClick={() => scrollToSection("chat")}>
           <MessageSquare className="h-5 w-5" />
-        </a>
+        </button>
       </li>
     </ul>
   );

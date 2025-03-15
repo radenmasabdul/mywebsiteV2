@@ -12,10 +12,18 @@ export default function Layout() {
         <Menu />
       </div>
 
-      <Home />
-      <Work />
-      <Story />
-      <Chat />
+      <section id="home">
+        <Home />
+      </section>
+      <section id="work">
+        <Work />
+      </section>
+      <section id="story">
+        <Story />
+      </section>
+      <section id="chat">
+        <Chat />
+      </section>
     </main>
   );
 }
