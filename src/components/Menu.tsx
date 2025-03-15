@@ -14,6 +14,7 @@ interface MenuProps {
 
 export default function Menu({ className = "" }: MenuProps) {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("home");
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -21,6 +22,7 @@ export default function Menu({ className = "" }: MenuProps) {
   };
 
   const scrollToSection = (id: string) => {
+    setActiveSection(id); // Update menu yang sedang aktif
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -38,22 +40,34 @@ export default function Menu({ className = "" }: MenuProps) {
         </button>
       </li>
       <li>
-        <button onClick={() => scrollToSection("home")}>
+        <button
+          onClick={() => scrollToSection("home")}
+          className={activeSection === "home" ? "text-yellow-400" : ""}
+        >
           <Home className="h-5 w-5" />
         </button>
       </li>
       <li>
-        <button onClick={() => scrollToSection("work")}>
+        <button
+          onClick={() => scrollToSection("work")}
+          className={activeSection === "work" ? "text-yellow-400" : ""}
+        >
           <Briefcase className="h-5 w-5" />
         </button>
       </li>
       <li>
-        <button onClick={() => scrollToSection("story")}>
+        <button
+          onClick={() => scrollToSection("story")}
+          className={activeSection === "story" ? "text-yellow-400" : ""}
+        >
           <BookOpen className="h-5 w-5" />
         </button>
       </li>
       <li>
-        <button onClick={() => scrollToSection("chat")}>
+        <button
+          onClick={() => scrollToSection("chat")}
+          className={activeSection === "chat" ? "text-yellow-400" : ""}
+        >
           <MessageSquare className="h-5 w-5" />
         </button>
       </li>
