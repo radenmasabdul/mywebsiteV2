@@ -9,10 +9,11 @@ import {
 } from "lucide-react";
 
 interface MenuProps {
+  onHomeClick: () => void;
   className?: string;
 }
 
-export default function Menu({ className = "" }: MenuProps) {
+export default function Menu({ onHomeClick, className = "" }: MenuProps) {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("home");
 
@@ -22,14 +23,20 @@ export default function Menu({ className = "" }: MenuProps) {
   };
 
   const scrollToSection = (id: string) => {
-    setActiveSection(id); // Update menu yang sedang aktif
+    setActiveSection(id);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
+    //trigger animasi roket
+    if (id === "home") {
+      onHomeClick();
+    }
   };
 
   return (
     <ul
       className={`fixed top-4 z-50 menu menu-horizontal bg-[#1D1D1F] text-white rounded-4xl ${className}`}
     >
+      {/* tombol dark mode */}
       <li>
         <button onClick={toggleDarkMode}>
           {isDarkMode ? (
@@ -39,6 +46,8 @@ export default function Menu({ className = "" }: MenuProps) {
           )}
         </button>
       </li>
+
+      {/* tombol home */}
       <li>
         <button
           onClick={() => scrollToSection("home")}
@@ -47,6 +56,8 @@ export default function Menu({ className = "" }: MenuProps) {
           <Home className="h-5 w-5" />
         </button>
       </li>
+
+      {/* tombol work */}
       <li>
         <button
           onClick={() => scrollToSection("work")}
@@ -55,6 +66,8 @@ export default function Menu({ className = "" }: MenuProps) {
           <Briefcase className="h-5 w-5" />
         </button>
       </li>
+
+      {/* tombol story */}
       <li>
         <button
           onClick={() => scrollToSection("story")}
@@ -63,6 +76,8 @@ export default function Menu({ className = "" }: MenuProps) {
           <BookOpen className="h-5 w-5" />
         </button>
       </li>
+
+      {/* tombol chat */}
       <li>
         <button
           onClick={() => scrollToSection("chat")}
