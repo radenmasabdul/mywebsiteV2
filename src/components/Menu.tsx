@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Moon,
   Sun,
@@ -14,12 +14,13 @@ interface MenuProps {
 }
 
 export default function Menu({ onHomeClick, className = "" }: MenuProps) {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
   const [activeSection, setActiveSection] = useState<string>("home");
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle("dark");
   };
 
   const scrollToSection = (id: string) => {
@@ -31,6 +32,16 @@ export default function Menu({ onHomeClick, className = "" }: MenuProps) {
       onHomeClick();
     }
   };
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDarkMode]);
 
   return (
     <ul
