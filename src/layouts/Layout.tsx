@@ -1,5 +1,8 @@
 import Menu from "../components/Menu";
 import Home from "../components/Home";
+import Work from "../components/Work";
+import Story from "../components/Story";
+import Chat from "../components/Chat";
 
 export default function Layout() {
   return (
@@ -9,8 +12,10 @@ export default function Layout() {
         <Menu />
       </div>
 
-      {/* home */}
       <Home />
+      <Work />
+      <Story />
+      <Chat />
     </main>
   );
 }
