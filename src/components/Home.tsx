@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-// import { getWeather, getCityName } from "../utils/weatherApi";
 
 import {
   RainEffect,
@@ -12,57 +11,49 @@ import {
   StormEffect,
 } from "./Weather";
 
+import { useWeatherStore } from "../store/useWeatherStore";
+
 interface HomeProps {
   triggerAnimation: number;
 }
 
 export default function Home({ triggerAnimation }: HomeProps) {
   const [animationKey, setAnimationKey] = useState(0);
-  const [weather, setWeather] = useState<string | null>(null);
-  const [location, setLocation] = useState("Jakarta"); // Default Jakarta
+  // const [weather, setWeather] = useState<string | null>(null);
+  // const [location, setLocation] = useState("Jakarta");
+
+  const { weather, location, fetchWeather } = useWeatherStore();
 
   useEffect(() => {
     setAnimationKey((prev) => prev + 1);
   }, [triggerAnimation]);
 
-  // Ambil lokasi pengguna
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          fetchWeather(latitude, longitude);
+        },
+        () => {
+          console.warn("⚠️ Izin lokasi ditolak, menggunakan Jakarta.");
+          fetchWeather();
+        }
+      );
+    } else {
+      fetchWeather();
+    }
+  }, [fetchWeather]);
+
+  // untuk testing cuaca
   // useEffect(() => {
-  //   if ("geolocation" in navigator) {
-  //     navigator.geolocation.getCurrentPosition(
-  //       async (position) => {
-  //         const { latitude, longitude } = position.coords;
-  //         console.log(`📡 Lokasi terdeteksi: ${latitude}, ${longitude}`);
+  //   const testWeather = "Clear";
 
-  //         // Ambil cuaca berdasarkan koordinat
-  //         const weatherData = await getWeather(latitude, longitude);
-
-  //         // Ambil nama kota berdasarkan koordinat
-  //         const cityName = await getCityName(latitude, longitude);
-
-  //         if (weatherData) {
-  //           setWeather(weatherData.weather[0].main);
-  //           setLocation(cityName);
-  //         }
-  //       },
-  //       async () => {
-  //         console.warn("⚠️ Izin lokasi ditolak, menggunakan Jakarta.");
-  //         const data = await getWeather(-6.2088, 106.8456); // Koordinat Jakarta
-  //         if (data) setWeather(data.weather[0].main);
-  //       }
-  //     );
-  //   }
+  //   setWeather(testWeather);
+  //   setLocation("Testing City");
   // }, []);
 
-  //untuk testing cuaca
-  useEffect(() => {
-    // Ubah kondisi cuaca untuk testing
-    const testWeather = "Clear"; // Ganti sesuai animasi yang ingin diuji
-
-    setWeather(testWeather);
-    setLocation("Testing City");
-  }, []);
-
-  // Menentukan background gradient berdasarkan cuaca
+  // menentukan background gradient berdasarkan cuaca
   const weatherBackground = {
     Clear:
       "bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.7)_10%,_rgba(255,255,255,0.9)_50%)] dark:bg-[radial-gradient(circle_at_top,_rgba(252,211,77,0.8)_10%,_rgba(0,0,0,0.9)_50%)]",
@@ -89,10 +80,12 @@ export default function Home({ triggerAnimation }: HomeProps) {
     >
       <div className="absolute top-5 left-5 bg-transparent text-black dark:bg-transparent dark:text-white px-4 py-2 flex items-center gap-2">
         <span className="text-xl">📍</span>
-        <span className="text-lg font-semibold">{location}</span>
+        <span className="text-lg font-semibold">
+          {location || "Memuat lokasi..."}
+        </span>
       </div>
 
-      {/* Animasi Roket */}
+      {/* animasi roket */}
       <motion.div
         key={animationKey}
         initial={{ x: "-100vw", y: "100vh", scale: 0.8, opacity: 5 }}
@@ -111,7 +104,7 @@ export default function Home({ triggerAnimation }: HomeProps) {
         🚀
       </motion.div>
 
-      {/* Efek Cuaca */}
+      {/* efek cuaca */}
       {weather === "Rain" && <RainEffect />}
       {weather === "Clouds" && <CloudEffect />}
       {weather === "Thunderstorm" && <ThunderstormEffect />}
@@ -120,7 +113,7 @@ export default function Home({ triggerAnimation }: HomeProps) {
       {weather === "Extreme" && <HeatEffect />}
       {weather === "Tornado" && <StormEffect />}
 
-      {/* Konten Teks */}
+      {/* konten teks */}
       <div className="max-w-2xl">
         <p className="text-xl sm:text-2xl md:text-3xl text-gray-700 font-semibold font-plus-jakarta dark:text-white">
           Code like an artist, craft like a developer!
