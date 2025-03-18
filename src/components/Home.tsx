@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import {
   RainEffect,
@@ -18,28 +18,20 @@ interface HomeProps {
 export default function Home({ triggerAnimation }: HomeProps) {
   const [animationKey, setAnimationKey] = useState(0);
 
-  const { weather, fetchWeather } = useWeatherStore();
+  const hasFetched = useRef(false);
+
+  const { weather, fetchUserLocationWeather } = useWeatherStore();
 
   useEffect(() => {
     setAnimationKey((prev) => prev + 1);
   }, [triggerAnimation]);
 
   useEffect(() => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          fetchWeather(latitude, longitude);
-        },
-        () => {
-          console.warn("⚠️ Izin lokasi ditolak, menggunakan Jakarta.");
-          fetchWeather();
-        }
-      );
-    } else {
-      fetchWeather();
+    if (!hasFetched.current) {
+      hasFetched.current = true;
+      fetchUserLocationWeather();
     }
-  }, [fetchWeather]);
+  }, [fetchUserLocationWeather]);
 
   const weatherBackground = {
     Clear:

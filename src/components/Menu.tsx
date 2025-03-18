@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Moon,
   Sun,
@@ -28,12 +28,17 @@ export default function Menu({ onHomeClick, className = "" }: MenuProps) {
   });
   const [activeSection, setActiveSection] = useState<string>("home");
   const [isHovered, setIsHovered] = useState<boolean>(false);
+  const hasFetched = useRef(false);
 
-  const { weather, location, temperature, fetchWeather } = useWeatherStore();
+  const { weather, location, temperature, fetchUserLocationWeather } =
+    useWeatherStore();
 
   useEffect(() => {
-    fetchWeather();
-  }, [fetchWeather]);
+    if (!hasFetched.current) {
+      hasFetched.current = true;
+      fetchUserLocationWeather();
+    }
+  }, [fetchUserLocationWeather]);
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
