@@ -1,30 +1,20 @@
-import { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import {
+  ClearEffect,
   RainEffect,
   CloudEffect,
   ThunderstormEffect,
   SnowEffect,
   FogEffect,
-  HeatEffect,
-  StormEffect,
+  ExtremeEffect,
+  TornadoEffect,
 } from "./Weather";
 import { useWeatherStore } from "../store/useWeatherStore";
 
-interface HomeProps {
-  triggerAnimation: number;
-}
-
-export default function Home({ triggerAnimation }: HomeProps) {
-  const [animationKey, setAnimationKey] = useState(0);
-
+export default function Home() {
   const hasFetched = useRef(false);
 
   const { weather, fetchUserLocationWeather } = useWeatherStore();
-
-  useEffect(() => {
-    setAnimationKey((prev) => prev + 1);
-  }, [triggerAnimation]);
 
   useEffect(() => {
     if (!hasFetched.current) {
@@ -53,35 +43,16 @@ export default function Home({ triggerAnimation }: HomeProps) {
     <section
       id="home"
       className={`relative min-h-screen w-full flex flex-col justify-center px-6 sm:px-10 lg:px-20 overflow-hidden ${
-        weatherBackground[weather as keyof typeof weatherBackground] ||
-        weatherBackground["Clear"]
-      }`}
+        weatherBackground[weather as keyof typeof weatherBackground]}`}
     >
-      <motion.div
-        key={animationKey}
-        initial={{ x: "-100vw", y: "100vh", scale: 0.8, opacity: 5 }}
-        animate={{
-          x: "100vw",
-          y: "-10vh",
-          scale: 2,
-          opacity: [1, 1, 1],
-        }}
-        transition={{
-          duration: 10,
-          ease: "easeInOut",
-        }}
-        className="absolute text-7xl"
-      >
-        🚀
-      </motion.div>
-
+      {weather === "Clear" && <ClearEffect />}
       {weather === "Rain" && <RainEffect />}
       {weather === "Clouds" && <CloudEffect />}
       {weather === "Thunderstorm" && <ThunderstormEffect />}
       {weather === "Snow" && <SnowEffect />}
       {weather === "Fog" && <FogEffect />}
-      {weather === "Extreme" && <HeatEffect />}
-      {weather === "Tornado" && <StormEffect />}
+      {weather === "Extreme" && <ExtremeEffect />}
+      {weather === "Tornado" && <TornadoEffect />}
 
       <div className="max-w-2xl">
         <p className="text-xl sm:text-2xl md:text-3xl text-gray-700 font-semibold font-plus-jakarta dark:text-white">
