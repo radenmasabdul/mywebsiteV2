@@ -18,11 +18,10 @@ import {
 import { useWeatherStore } from "../store/useWeatherStore";
 
 interface MenuProps {
-  onHomeClick: () => void;
   className?: string;
 }
 
-export default function Menu({ onHomeClick, className = "" }: MenuProps) {
+export default function Menu({ className = "" }: MenuProps) {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     return localStorage.getItem("theme") === "dark";
   });
@@ -47,10 +46,6 @@ export default function Menu({ onHomeClick, className = "" }: MenuProps) {
   const scrollToSection = (id: string) => {
     setActiveSection(id);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-
-    if (id === "home") {
-      onHomeClick();
-    }
   };
 
   useEffect(() => {
