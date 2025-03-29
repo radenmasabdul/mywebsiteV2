@@ -11,7 +11,7 @@ export async function getWeather(lat: number, lon: number) {
   }
 
   try {
-    console.log(`🔍 Mengambil cuaca untuk: lat=${lat}, lon=${lon}`);
+    // console.log(`🔍 Mengambil cuaca untuk: lat=${lat}, lon=${lon}`);
 
     const response = await axios.get(BASE_URL, {
       params: {
@@ -36,7 +36,7 @@ export async function getCityName(lat: number, lon: number) {
   }
 
   try {
-    console.log(`📍 Mencari nama kota untuk: lat=${lat}, lon=${lon}`);
+    // console.log(`📍 Mencari nama kota untuk: lat=${lat}, lon=${lon}`);
 
     const response = await axios.get("https://api.openweathermap.org/geo/1.0/reverse", {
       params: {

@@ -12,9 +12,6 @@ export default function Work() {
         <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold font-plus-jakarta text-black dark:text-white">
           My latest work
         </h2>
-        <p className="italic text-base sm:text-lg md:text-2xl lg:text-4xl font-plus-jakarta text-gray-500 dark:text-white">
-          from 2022 'til today
-        </p>
       </section>
 
       <div className="flex flex-col gap-10 sm:gap-12 md:gap-16 lg:gap-20">
