@@ -1,60 +1,24 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
+import { motion, useMotionValue } from "framer-motion";
 import { images, description } from "../utils/storyData";
 
 export default function Story() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState(0);
-  const isDragging = useRef(false);
-  const startX = useRef(0);
+  const x = useMotionValue(0);
   const velocity = 0.5;
   const itemWidth = 320;
-  const totalWidth = itemWidth * images.length;
+  const totalWidth = images.length * itemWidth;
 
-  // auto slide
   useEffect(() => {
-    let anim: number;
-    const animate = () => {
-      if (!isDragging.current) setPosition((prev) => prev - velocity);
-      anim = requestAnimationFrame(animate);
-    };
-    anim = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(anim);
-  }, []);
+    let raf: number;
 
-  // drag handler
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const handleDown = (e: PointerEvent) => {
-      isDragging.current = true;
-      startX.current = e.clientX;
-      track.setPointerCapture(e.pointerId);
+    const loop = () => {
+      x.set((x.get() - velocity) % -totalWidth);
+      raf = requestAnimationFrame(loop);
     };
 
-    const handleMove = (e: PointerEvent) => {
-      if (!isDragging.current) return;
-      const delta = e.clientX - startX.current;
-      startX.current = e.clientX;
-      setPosition((prev) => prev + delta);
-    };
-
-    const handleUp = () => {
-      isDragging.current = false;
-    };
-
-    track.addEventListener("pointerdown", handleDown);
-    track.addEventListener("pointermove", handleMove);
-    track.addEventListener("pointerup", handleUp);
-    track.addEventListener("pointerleave", handleUp);
-
-    return () => {
-      track.removeEventListener("pointerdown", handleDown);
-      track.removeEventListener("pointermove", handleMove);
-      track.removeEventListener("pointerup", handleUp);
-      track.removeEventListener("pointerleave", handleUp);
-    };
-  }, []);
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, [totalWidth, x]);
 
   return (
     <main className="w-full px-6 sm:px-10 lg:px-20 py-16 dark:bg-gray-800">
@@ -71,24 +35,20 @@ export default function Story() {
           </p>
         </div>
 
-        {/* POLAROID CAROUSEL */}
         <div className="bg-gray-100 overflow-hidden flex justify-center items-center sm:col-span-3 rounded-lg shadow p-4 dark:bg-gray-500">
-          <div
-            ref={trackRef}
-            className="flex space-x-6 w-full relative"
-            style={{
-              transform: `translateX(${position % -totalWidth}px)`,
-              transition: isDragging.current ? "none" : "transform 0.1s linear",
-            }}
+          <motion.div
+            className="flex space-x-6"
+            style={{ x }}
+            drag="x"
+            dragElastic={0.05}
+            dragConstraints={{ left: -totalWidth, right: 0 }}
           >
             {[...images, ...images].map((item, idx) => (
-              <div
+              <motion.div
                 key={idx}
                 className={`relative bg-white p-3 rounded-sm shadow-lg w-[70vw] max-w-xs sm:w-[220px] md:w-[260px] shrink-0 
-                  ${
-                    idx % 2 === 0 ? "rotate-[-2deg]" : "rotate-[2deg]"
-                  } transition-transform duration-300 
-                  hover:scale-105 mr-[100px]`}
+                ${idx % 2 === 0 ? "rotate-[-2deg]" : "rotate-[2deg]"}
+                hover:scale-105 mr-[100px]`}
               >
                 <div
                   className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-11 w-3 h-3 rounded-full ${item.nail} z-10 shadow`}
@@ -104,13 +64,12 @@ export default function Story() {
                   alt={item.caption}
                   className="w-full aspect-[4/5] object-cover rounded-sm border border-gray-300"
                 />
-
                 <p className="mt-2 text-sm text-gray-600 text-center font-plus-jakarta">
                   {item.caption}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </main>
