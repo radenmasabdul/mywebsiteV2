@@ -1,16 +1,18 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import workData, { WorkData } from "../utils/workData";
 import DetailProject from "../pages/DetailProject";
 
 export default function Work() {
   const [selectedProject, setSelectedProject] = useState<WorkData | null>(null);
+  const { t } = useTranslation();
 
   return (
     <main className="px-4 sm:px-8 md:px-12 lg:px-20 py-12 sm:py-16 dark:bg-gray-800">
       <section className="text-center mb-8 sm:mb-10">
         <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold font-plus-jakarta text-black dark:text-white">
-          My latest work
+          {t("work.title")}
         </h2>
       </section>
 
@@ -18,9 +20,7 @@ export default function Work() {
         {workData.map((project) => (
           <section
             key={project.id}
-            className="relative px-4 sm:px-8 md:px-10 pt-8 rounded-2xl shadow-lg overflow-hidden 
-            group transition-all duration-500 ease-in-out bg-gray-100 dark:bg-gray-500 cursor-pointer
-            min-[1025px]:min-h-screen min-[1281px]:min-h-screen"
+            className="relative px-4 sm:px-8 md:px-10 pt-8 rounded-2xl shadow-lg overflow-hidden group transition-all duration-500 ease-in-out bg-gray-100 dark:bg-gray-500 cursor-pointer min-[1025px]:min-h-screen min-[1281px]:min-h-screen"
           >
             <div
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out pointer-events-none"
@@ -45,11 +45,11 @@ export default function Work() {
                   <img
                     src={project.logo}
                     className="w-8 h-8 sm:w-10 sm:h-10"
-                    alt={`${project.name} Logo`}
+                    alt={`${t(project.nameKey)} Logo`}
                   />
                 </span>
                 <h3 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold font-plus-jakarta text-gray-900 dark:text-white">
-                  {project.name}
+                  {t(project.nameKey)}
                 </h3>
               </div>
 
@@ -60,15 +60,12 @@ export default function Work() {
 
             <div className="py-3 relative z-10">
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 dark:text-white leading-relaxed font-plus-jakarta">
-                {project.description}
+                {t(project.descriptionKey)}
               </p>
             </div>
 
             <div className="flex justify-center relative z-10">
-              <div
-                className="absolute left-28 mt-10 transform -rotate-6 z-50 transition-all duration-500 ease-in-out 
-                group-hover:-translate-x-5 group-hover:-rotate-12 hidden lg:block"
-              >
+              <div className="absolute left-28 mt-10 transform -rotate-6 z-50 transition-all duration-500 ease-in-out group-hover:-translate-x-5 group-hover:-rotate-12 hidden lg:block">
                 <figure>
                   <img
                     src={project.mobileImage}

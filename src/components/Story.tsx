@@ -1,9 +1,11 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { motion, useMotionValue } from "framer-motion";
-import { images, description, descriptionText } from "../utils/storyData";
+import { images } from "../utils/storyData";
 import ReadMore from "./ReadMore";
 
 export default function Story() {
+  const { t } = useTranslation();
   const x = useMotionValue(0);
   const velocity = 0.5;
   const itemWidth = 320;
@@ -25,14 +27,14 @@ export default function Story() {
     <main className="w-full px-6 sm:px-10 lg:px-20 py-16 dark:bg-gray-800">
       <section className="max-w-2xl">
         <p className="text-xl sm:text-2xl md:text-6xl text-gray-700 font-semibold font-plus-jakarta dark:text-white">
-          Code like an artist, craft like a developer!
+          {t("home.title")}
         </p>
       </section>
 
       <div>
         <section className="mt-10 block lg:hidden">
           <div className="bg-gray-100 dark:bg-gray-500 p-6 sm:p-10 rounded-lg shadow flex flex-col gap-6">
-            <ReadMore text={description} />
+            <ReadMore text={t("story.description")} />
 
             <div className="overflow-hidden flex justify-center items-center">
               <motion.div
@@ -75,7 +77,7 @@ export default function Story() {
         <section className="mt-10 hidden lg:grid grid-cols-5 gap-6">
           <div className="bg-gray-100 p-6 sm:p-10 rounded-lg shadow col-span-2 dark:bg-gray-500">
             <p className="text-xl text-gray-800 font-semibold font-plus-jakarta dark:text-white leading-relaxed">
-              {description}
+              {t("story.description")}
             </p>
           </div>
 
@@ -140,7 +142,7 @@ export default function Story() {
                 {images[2].caption}
               </p>
             </div>
-            <ReadMore text={descriptionText} />
+            <ReadMore text={t("story.descriptionText")} />
           </div>
         </section>
 
@@ -170,7 +172,7 @@ export default function Story() {
 
           <div className="bg-gray-100 p-6 sm:p-10 rounded-lg shadow col-span-2 dark:bg-gray-500">
             <p className="text-xl text-gray-800 font-semibold font-plus-jakarta dark:text-white leading-relaxed space-y-4">
-              {descriptionText}
+              {t("story.descriptionText")}
             </p>
           </div>
         </section>

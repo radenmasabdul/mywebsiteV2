@@ -14,8 +14,10 @@ import {
   Tornado,
   ThermometerSun,
   Cloud,
+  Languages,
 } from "lucide-react";
 import { useWeatherStore } from "../store/useWeatherStore";
+import i18n from "../i18n";
 
 interface MenuProps {
   className?: string;
@@ -25,10 +27,13 @@ export default function Menu({ className = "" }: MenuProps) {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     return localStorage.getItem("theme") === "dark";
   });
+  const [isDarkActive, setIsDarkActive] = useState<boolean>(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
   const [activeSection, setActiveSection] = useState<string>("home");
   const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [isLangActive, setIsLangActive] = useState<boolean>(false);
   const hasFetched = useRef(false);
-
   const { weather, location, temperature, fetchUserLocationWeather } =
     useWeatherStore();
 
@@ -40,7 +45,8 @@ export default function Menu({ className = "" }: MenuProps) {
   }, [fetchUserLocationWeather]);
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
+    setIsDarkMode((prev) => !prev);
+    setIsDarkActive((prev) => !prev);
   };
 
   const scrollToSection = (id: string) => {
@@ -81,6 +87,13 @@ export default function Menu({ className = "" }: MenuProps) {
     }
   };
 
+  const toggleLanguage = () => {
+    const currentLang = i18n.language;
+    const newLang = currentLang.startsWith("en") ? "id" : "en";
+    i18n.changeLanguage(newLang);
+    localStorage.setItem("i18nextLng", newLang);
+  };
+
   return (
     <ul
       className={`fixed top-4 z-50 menu menu-horizontal bg-[#1D1D1F] text-white rounded-4xl transition-all duration-300 ${className}`}
@@ -88,7 +101,10 @@ export default function Menu({ className = "" }: MenuProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <li>
-        <button onClick={toggleDarkMode}>
+        <button
+          onClick={toggleDarkMode}
+          className={isDarkActive ? "text-yellow-400" : ""}
+        >
           {isDarkMode ? (
             <Moon className="h-5 w-5" />
           ) : (
@@ -112,6 +128,18 @@ export default function Menu({ className = "" }: MenuProps) {
           </button>
         </li>
       ))}
+
+      <li>
+        <button
+          onClick={() => {
+            toggleLanguage();
+            setIsLangActive((prev) => !prev);
+          }}
+          className={isLangActive ? "text-yellow-400" : ""}
+        >
+          <Languages className="h-5 w-5" />
+        </button>
+      </li>
 
       {isHovered && (
         <li className="group">

@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function ReadMore({ text }: { text: string }) {
+  const { t } = useTranslation();
   const [showFull, setShowFull] = useState(false);
   const shortText = text.slice(0, 120) + "...";
 
@@ -15,7 +17,7 @@ export default function ReadMore({ text }: { text: string }) {
             onClick={handleToggle}
             className="text-blue-600 hover:underline ml-1"
           >
-            Read Less
+            {t("readMore.title2")}
           </button>
         </>
       ) : (
@@ -25,7 +27,7 @@ export default function ReadMore({ text }: { text: string }) {
             onClick={handleToggle}
             className="text-blue-600 hover:underline ml-1"
           >
-            Read More
+            {t("readMore.title")}
           </button>
         </>
       )}

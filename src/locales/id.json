@@ -1,0 +1,44 @@
+{
+    "home": {"title": "Membuat kode layaknya seniman, mewujudkan karya seperti pengembang!"},
+    "work": {
+    "title": "Karya terbaru saya",
+    "esppa": {
+      "name": "ESPPA",
+      "responsibilitiesTitle": "Tanggung Jawab",
+      "description": "Mengembangkan aplikasi yang mendukung fitur SPPA, Polis, Klaim, Penagihan, dan Pembayaran dalam ekosistem UKM.",
+      "responsibilities": "Membangun fitur baru untuk meningkatkan fungsionalitas, Memperbaiki bug dan meningkatkan stabilitas sistem, Mengoptimalkan performa UI dan memperluas cakupan layanan, Berkolaborasi dengan tim backend dan QA untuk memenuhi kebutuhan bisnis, Menggunakan React,JavaScript,TypeScript,dan Tailwind CSS."
+    },
+    "ruangdata": {
+      "name": "Ruang Data",
+      "responsibilitiesTitle": "Tanggung Jawab",
+      "description": "Terlibat dalam pengembangan awal dan pembaruan berkelanjutan aplikasi Web Ruang Data.",
+      "responsibilities": "Membangun arsitektur frontend dan mengimplementasikan UI/UX yang responsif, Memperbarui dan meningkatkan fitur berdasarkan kebutuhan bisnis, Memperbaiki bug dan meningkatkan performa aplikasi, Berkolaborasi dengan tim backend dan QA untuk integrasi yang lancar, Menggunakan React,TypeScript,dan Tailwind CSS."
+    },
+    "kbm": {
+      "name": "KBM",
+      "responsibilitiesTitle": "Tanggung Jawab",
+      "description": "Meningkatkan platform Web Klaim KBM.",
+      "responsibilities": "Mengembangkan dan merilis fitur baru untuk meningkatkan fungsionalitas, Memperbaiki bug dan mengoptimalkan performa UI, Menyempurnakan fitur yang ada untuk pengalaman pengguna yang lebih baik, Berkolaborasi dengan tim backend dan QA untuk integrasi yang lancar, Menggunakan React,JavaScript,dan Material UI."
+    },
+    "health": {
+      "name": "Health",
+      "responsibilitiesTitle": "Tanggung Jawab",
+      "description": "Meningkatkan platform Web Health.",
+      "responsibilities": "Mengimplementasikan fitur baru dan memperbaiki bug, Meningkatkan UI/UX dengan desain responsif, Mengoptimalkan kinerja untuk pengalaman pengguna yang lebih baik, Memastikan integrasi yang lancar dengan tim backend dan QA, Menggunakan React,JavaScript,dan Material UI."
+    }
+    },
+    "story":{
+      "description": "Saya seorang Pengembang Web Frontend dengan kecintaan mendalam pada seni dan teknologi. Perjalanan saya dimulai saat kuliah, mulai dari eksperimen hingga hasrat untuk membuat antarmuka yang menarik dan interaktif. Saat ini, saya membagikan pengetahuan saya sebagai kreator konten sambil terus menyempurnakan situs web pribadi saya. Impian saya? Menjadi Pengembang Web yang handal. Dan suatu hari nanti, saya ingin membangun robot humanoid yang menghidupkan teknologi. Dengan konsistensi dan hasrat, saya yakin hal-hal luar biasa menanti.",
+      "descriptionText": "Sebaris Code memberi Anda tutorial kode yang mudah dan singkat yang membantu Anda memahami dasar-dasar pengembangan frontend — mulai dari HTML, CSS, hingga JavaScript. Baik Anda ingin membuat situs web pertama atau memahami cara kerja situs web, setiap video pendek menguraikan konsep yang rumit menjadi langkah-langkah sederhana yang mudah diikuti. Sempurna untuk pelajar, pembelajar mandiri, atau siapa pun yang ingin tahu tentang teknologi, saluran ini menunjukkan bahwa belajar membuat kode tidak harus sulit atau membosankan. Hanya dengan satu baris kode dalam satu waktu, Anda akan perlahan menguasai cara membuat situs web yang cantik dan responsif. Ikuti dan mulailah perjalanan Anda untuk menjadi pengembang frontend hari ini — satu baris dalam satu waktu! 💻✨"
+    },
+    "chat": {
+    "connectHeading": "Mari Terhubung!",
+    "connectText": "Saya selalu antusias untuk berkolaborasi dan mengeksplorasi ide baru. Hubungi saya melalui email atau platform sosial di bawah ini!",
+    "emailButton": "Hubungi",
+    "emailTitle": "Kirim Email ke Abdul"
+    },
+    "readMore":{
+      "title": "Baca Selengkapnya",
+      "title2": "Baca Lebih Sedikit"
+    }
+}

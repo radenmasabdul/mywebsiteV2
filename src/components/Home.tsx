@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import {
   ClearEffect,
   RainEffect,
@@ -13,7 +14,7 @@ import { useWeatherStore } from "../store/useWeatherStore";
 
 export default function Home() {
   const hasFetched = useRef(false);
-
+  const { t } = useTranslation();
   const { weather, fetchUserLocationWeather } = useWeatherStore();
 
   useEffect(() => {
@@ -43,7 +44,8 @@ export default function Home() {
     <section
       id="home"
       className={`relative min-h-screen w-full flex flex-col justify-center px-6 sm:px-10 lg:px-20 overflow-hidden ${
-        weatherBackground[weather as keyof typeof weatherBackground]}`}
+        weatherBackground[weather as keyof typeof weatherBackground]
+      }`}
     >
       {weather === "Clear" && <ClearEffect />}
       {weather === "Rain" && <RainEffect />}
@@ -56,7 +58,7 @@ export default function Home() {
 
       <div className="max-w-2xl">
         <p className="text-xl sm:text-2xl md:text-3xl text-gray-700 font-semibold font-plus-jakarta dark:text-white">
-          Code like an artist, craft like a developer!
+          {t("home.title")}
         </p>
       </div>
       <div className="mt-4">
