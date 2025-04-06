@@ -24,7 +24,7 @@ export default function Story() {
   }, [totalWidth, x]);
 
   return (
-    <main className="w-full px-6 sm:px-10 lg:px-20 py-16 dark:bg-gray-800">
+    <main className="w-full px-6 sm:px-10 lg:px-20 py-16 bg-white dark:bg-gray-800">
       <section className="max-w-2xl">
         <p className="text-xl sm:text-2xl md:text-6xl text-gray-700 font-semibold font-plus-jakarta dark:text-white">
           {t("home.title")}

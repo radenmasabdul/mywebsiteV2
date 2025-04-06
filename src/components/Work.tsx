@@ -9,7 +9,7 @@ export default function Work() {
   const { t } = useTranslation();
 
   return (
-    <main className="px-4 sm:px-8 md:px-12 lg:px-20 py-12 sm:py-16 dark:bg-gray-800">
+    <main className="px-4 sm:px-8 md:px-12 lg:px-20 py-12 sm:py-16 bg-white dark:bg-gray-800">
       <section className="text-center mb-8 sm:mb-10">
         <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold font-plus-jakarta text-black dark:text-white">
           {t("work.title")}
