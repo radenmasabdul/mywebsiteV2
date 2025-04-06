@@ -36,7 +36,7 @@ export default function DetailProject({
         <h3 className="mt-6 text-xl font-semibold text-gray-900 dark:text-white">
           Responsibilities
         </h3>
-        
+
         <ul className="mt-3 list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
           {project.responsibilities.split(", ").map((task, index) => (
             <li key={index} className="text-base">
@@ -45,7 +45,6 @@ export default function DetailProject({
           ))}
         </ul>
 
-        {/* Gambar Proyek */}
         <img
           src={project.webImage}
           alt={project.name}
