@@ -1,0 +1,44 @@
+{
+    "home": {"title": "Code like an artist, craft like a developer!"},
+    "work": {
+    "title": "My latest work",
+    "esppa": {
+      "name": "ESPPA",
+      "responsibilitiesTitle": "Responsibilities",
+      "description": "Developed an application supporting SPPA, Policy, Claims, Invoicing, and Payment in the SME ecosystem.",
+      "responsibilities": "Building new features to enhance functionality, Fixing bugs and improving system stability, Optimizing UI performance and expanding service coverage, Collaborating with backend and QA teams to meet business requirements, Using React,JavaScript,TypeScript,and Tailwind CSS."
+    },
+    "ruangdata": {
+      "name": "Ruang Data",
+      "responsibilitiesTitle": "Responsibilities",
+      "description": "Involved in the initial development and ongoing updates of the Ruang Data Web application.",
+      "responsibilities": "Building frontend architecture and implementing responsive UI/UX, Updating and enhancing features based on business needs, Fixing bugs and improving performance, Collaborating with backend and QA teams for seamless integration, Utilizing React,TypeScript,and Tailwind CSS."
+    },
+    "kbm": {
+      "name": "KBM",
+      "responsibilitiesTitle": "Responsibilities",
+      "description": "Enhancing the KBM Claim Web platform.",
+      "responsibilities": "Developing and releasing new features to improve functionality,  Fixing bugs and optimizing UI performance, Refining existing features for better user experience, Collaborating with backend and QA teams for seamless integration, Utilizing React,JavaScript,and Material UI."
+    },
+    "health": {
+      "name": "Health",
+      "responsibilitiesTitle": "Responsibilities",
+      "description": "Enhancing the Health Web platform.",
+      "responsibilities": "Implementing new features and fixing bugs, Enhancing UI/UX with responsive design, Optimizing performance for a better user experience, Ensuring smooth integration with backend and QA teams, Using React,JavaScript,and Material UI."
+    }
+    },
+    "story":{
+      "description": "I'm a Frontend Web Developer with a deep love for art and technology. My journey began during college, starting from experiments to a passion for crafting engaging and interactive interfaces. Today, I share my knowledge as a content creator while continuously improving my personal website. My dream? To become a Fullstack Developer — and one day, build a humanoid robot that brings technology to life. With consistency and passion, I believe extraordinary things await.",
+      "descriptionText": "Sebaris Code gives you easy and short code tutorials that help you understand the basics of frontend development — starting from HTML, CSS, to JavaScript. Whether you want to build your first website or understand how websites work, every short video breaks down complex concepts into simple steps that are easy to follow. Perfect for students, self-learners, or anyone who’s curious about tech, this channel shows that learning to code doesn't have to be hard or boring. With just one line of code at a time, you'll slowly master how to create beautiful and responsive websites. Follow along and start your journey to becoming a frontend developer today — one line at a time! 💻✨"
+    },
+    "chat": {
+    "connectHeading": "Let's Connect!",
+    "connectText": "I'm always excited to collaborate and explore new ideas. Reach out via email or social platforms below!",
+    "emailButton": "Connect",
+    "emailTitle": "Send Email to Abdul"
+    },
+    "readMore":{
+      "title": "Read More",
+      "title2": "Read Less"
+    }
+}
