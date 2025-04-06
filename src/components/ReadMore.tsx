@@ -10,19 +10,23 @@ export default function ReadMore({ text }: { text: string }) {
     <p className="text-base text-gray-800 font-plus-jakarta dark:text-white leading-relaxed">
       {showFull ? (
         <>
-          {text}
-          <span
+          {text}{" "}
+          <button
             onClick={handleToggle}
-            className="inline-block w-3 h-5 align-baseline cursor-pointer"
-          ></span>
+            className="text-blue-600 hover:underline ml-1"
+          >
+            Read Less
+          </button>
         </>
       ) : (
         <>
-          {shortText}
-          <span
+          {shortText}{" "}
+          <button
             onClick={handleToggle}
-            className="inline-block w-3 h-5 align-baseline cursor-pointer"
-          ></span>
+            className="text-blue-600 hover:underline ml-1"
+          >
+            Read More
+          </button>
         </>
       )}
     </p>
