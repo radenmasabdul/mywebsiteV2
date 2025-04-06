@@ -22,3 +22,6 @@ My dream? To become a Fullstack Developer — and one day, build a humanoid robo
 that brings technology to life. With consistency and passion, I believe 
 extraordinary things await.
 `;
+
+export const descriptionText = `Sebaris Code gives you easy and short code tutorials that help you understand the basics of frontend development — starting from HTML, CSS, to JavaScript. Whether you want to build your first website or understand how websites work, every short video breaks down complex concepts into simple steps that are easy to follow.
+Perfect for students, self-learners, or anyone who's curious about tech, this channel shows that learning to code doesn't have to be hard or boring. With just one line of code at a time, you'll slowly master how to create beautiful and responsive websites. Follow along and start your journey to becoming a frontend developer today — one line at a time! 💻✨`
